@@ -42,7 +42,7 @@ public class DeviceUtils {
      * @return          The Google Play Advertising ID.
      */
     @Nullable
-    private static String getPlayAdId(@NonNull Context context) {
+    public static String getPlayAdId(@NonNull Context context) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String playAdId = preferences.getString(PLAY_AD_ID_SAVED_KEY, null);
 
