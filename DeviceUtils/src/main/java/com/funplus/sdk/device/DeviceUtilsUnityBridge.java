@@ -142,8 +142,9 @@ public class DeviceUtilsUnityBridge {
      *
      * @param application       The current application.
      * @param brightness        The value of brightness to be set, between 0 and 255 inclusively.
+     * @return                  Status of this operation.
      */
-    public static void setScreenBrightness(@NonNull Application application, int brightness) {
-        DeviceUtils.setScreenBrightness(application, brightness);
+    public static boolean setScreenBrightness(@NonNull Application application, int brightness) {
+        return DeviceUtils.setScreenBrightness(application, brightness);
     }
 }

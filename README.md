@@ -115,7 +115,9 @@ String appLanguage = DeviceUtils.getAppLanguage();
 
 ```java
 int brightness = 160;
-DeviceUtils.setScreenBrightness(brightness);
+boolean isSuccess = DeviceUtils.setScreenBrightness(brightness);
 ```
 
 Value of the `brightness` parameter should be between 0 and 255. values less than 0 will be treat as 0, and values greater than 255 will be treat as 255.
+
+Note that on Android 6.0+, it will return false and lead the user to a window that requests the `WRITE_SETTINGS` permission for the first time this method is called.

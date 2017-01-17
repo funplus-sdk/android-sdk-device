@@ -2,12 +2,14 @@ package com.funplus.sdk.device;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -195,8 +197,19 @@ public class DeviceUtils {
      *
      * @param context       The current context.
      * @param brightness    The value of brightness to be set, between 0 and 255 inclusively.
+     * @return              Status of this operation.
      */
-    public static void setScreenBrightness(@NonNull Context context, int brightness) {
+    public static boolean setScreenBrightness(@NonNull Context context, int brightness) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.System.canWrite(context)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                intent.setData(Uri.parse("package:" + context.getPackageName()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+                return false;
+            }
+        }
+
         if (brightness < 0) {
             brightness = 0;
         } else if (brightness > 255) {
@@ -205,5 +218,7 @@ public class DeviceUtils {
 
         ContentResolver contentResolver = context.getContentResolver();
         Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
+
+        return true;
     }
 }
