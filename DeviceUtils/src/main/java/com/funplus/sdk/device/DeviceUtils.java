@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.telephony.TelephonyManager;
 
 import java.util.Locale;
 
@@ -190,6 +191,19 @@ public class DeviceUtils {
     @NonNull
     public static String getCountry() {
         return Locale.getDefault().getCountry();
+    }
+
+    /**
+     * Get the network carrier name.
+     *
+     * @param context       The current context.
+     * @return              The network carrier name.
+     */
+    @NonNull
+    public static String getNetworkCarrierName(@NonNull Context context) {
+        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String carrierName = manager.getNetworkOperatorName();
+        return carrierName == null || carrierName.isEmpty() ? "UNKNOWN" : carrierName;
     }
 
     /**

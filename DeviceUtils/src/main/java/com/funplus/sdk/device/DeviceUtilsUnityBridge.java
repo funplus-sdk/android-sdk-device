@@ -138,6 +138,17 @@ public class DeviceUtilsUnityBridge {
     }
 
     /**
+     * Get the network carrier name.
+     *
+     * @param application       The current application.
+     * @return                  The network carrier name.
+     */
+    @NonNull
+    public static String getNetworkCarrierName(@NonNull Application application) {
+        return DeviceUtils.getNetworkCarrierName(application);
+    }
+
+    /**
      * Set screen brightness.
      *
      * @param application       The current application.

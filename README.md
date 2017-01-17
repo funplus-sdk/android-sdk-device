@@ -111,6 +111,12 @@ String appVersion = DeviceUtils.getAppVersion();
 String appLanguage = DeviceUtils.getAppLanguage();
 ```
 
+### Get the Network Carrier Name
+
+```java
+String carrier = DeviceUtils.getNetworkCarrierName(context);
+```
+
 ### Set the Screen Brightness
 
 ```java
