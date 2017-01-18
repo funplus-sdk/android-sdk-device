@@ -209,6 +209,18 @@ public class DeviceUtils {
     }
 
     /**
+     * Get current screen brightness.
+     *
+     * @param context       The current context.
+     * @return              The current brightness, between 0 and 255 inclusively. Or return -1
+     *                      if failing to retrieve this value.
+     */
+    public static int getScreenBrightness(@NonNull Context context) {
+        ContentResolver contentResolver = context.getContentResolver();
+        return Settings.System.getInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1);
+    }
+
+    /**
      * Set screen brightness.
      *
      * @param context       The current context.

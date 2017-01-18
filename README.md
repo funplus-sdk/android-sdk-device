@@ -117,6 +117,14 @@ String appLanguage = DeviceUtils.getAppLanguage();
 String carrier = DeviceUtils.getNetworkCarrierName(context);
 ```
 
+### Get Screen Brightness
+
+This method returns an integer ranged from 0 to 255 inclusively. If the screen brightness cannot be retrieved, it returns `-1`.
+
+```java
+int brightness = DeviceUtils.getScreenBrightness(context);
+```
+
 ### Set Screen Brightness
 
 To use this API, add the following permission declaration before the `application` tag in your `AndroidManifest.xml` if they're not present already.
