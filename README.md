@@ -1,4 +1,4 @@
-# FunPlus SDK Device utils
+# Device Utils for Android
 
 ## Requirements
 
@@ -17,7 +17,7 @@
 
 ### Add the SDK to Your Project
 
-Add the `funplus-android-sdk-<version>.jar` file to your app and set as dependency.
+Add the `funplus-android-sdk-device-utils-<version>.jar` file to your app and set as dependency.
 
 ### Add Google Play Services
 
@@ -27,103 +27,109 @@ FunPlus SDK uses the [Google Advertising ID](https://support.google.com/googlepl
 compile 'com.google.android.gms:play-services-analytics:9.4.0'
 ```
 
-### Add Permissions
-
-Add the following permission declaration before the `application` tag in your `AndroidManifest.xml` if they're not present already.
-
-```xml
-<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-```
-
 ## Usage
 
-### Get the Play Advertising ID
+Before using the APIs, import the package to your source files.
+
+```java
+import com.funplus.sdk.device.DeviceUtils;
+```
+
+### Get Play Advertising ID
+
+This method might return `null`.
 
 ```java
 String playAdId = DeviceUtils.getPlayAdId(context);
 ```
 
-The returning value might be null.
-
-### Get the Android ID
+### Get Android ID
 
 ```java
 String androidId = DeviceUtils.getAndroidId(context);
 ```
 
-### Get the Device Type
+### Get Device Type
+
+This method returns one of the following strings:
+
+- phone
+- tablet
+- unknown
 
 ```java
 String deviceType = DeviceUtils.getDeviceType(context);
 ```
 
-The returning value is one of the following strings:
-
-* phone
-* tablet
-* unknown
-
-### Get Device's Model Name
+### Get Device Model Name
 
 ```java
 String modelName = DeviceUtils.getModelName();
 ```
 
-### Get Device's Manufacturer
+### Get Device Manufacturer
 
 ```java
 String manufacturer = DeviceUtils.getManufacturer();
 ```
 
-### Get the System Name
+### Get System Name
 
 ```java
 String systemName = DeviceUtils.getSystemName();
 ```
 
-### Get the System Version
+### Get System Version
 
 ```java
 String systemVersion = DeviceUtils.getSystemVersion();
 ```
 
-### Get the API Level
+### Get API Level
 
 ```java
 String apiLevel = DeviceUtils.getApiLevel();
 ```
 
-### Get App's Name
+### Get App Name
 
 ```java
 String appName = DeviceUtils.getAppName();
 ```
 
-### Get App's Version
+### Get App Version
 
 ```java
 String appVersion = DeviceUtils.getAppVersion();
 ```
 
-### Get App's Language
+### Get App Display Language
+
+This method gets the display language for the application, it might be different from the device language.
 
 ```java
 String appLanguage = DeviceUtils.getAppLanguage();
 ```
 
-### Get the Network Carrier Name
+### Get Network Carrier Name
 
 ```java
 String carrier = DeviceUtils.getNetworkCarrierName(context);
 ```
 
-### Set the Screen Brightness
+### Set Screen Brightness
 
-```java
-int brightness = 160;
-boolean isSuccess = DeviceUtils.setScreenBrightness(brightness);
+To use this API, add the following permission declaration before the `application` tag in your `AndroidManifest.xml` if they're not present already.
+
+```xml
+<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 ```
 
 Value of the `brightness` parameter should be between 0 and 255. values less than 0 will be treat as 0, and values greater than 255 will be treat as 255.
 
-Note that on Android 6.0+, it will return false and lead the user to a window that requests the `WRITE_SETTINGS` permission for the first time this method is called.
+Note that on Android 6.0+, it will return `false` and lead the user to a window that requests the `WRITE_SETTINGS` permission for the first time this method is called.
+
+```java
+int brightness = 160;
+boolean isSuccess = DeviceUtils.setScreenBrightness(context, brightness);
+```
