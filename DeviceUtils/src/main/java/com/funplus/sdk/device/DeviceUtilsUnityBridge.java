@@ -1,6 +1,9 @@
 package com.funplus.sdk.device;
 
 import android.app.Application;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -146,6 +149,17 @@ public class DeviceUtilsUnityBridge {
     @NonNull
     public static String getNetworkCarrierName(@NonNull Application application) {
         return DeviceUtils.getNetworkCarrierName(application);
+    }
+
+    /**
+     * Get current screen brightness.
+     *
+     * @param application       The current context.
+     * @return                  The current brightness, between 0 and 255 inclusively. Or return -1
+     *                          if failing to retrieve this value.
+     */
+    public static int getScreenBrightness(@NonNull Application application) {
+        return DeviceUtils.getScreenBrightness(application);
     }
 
     /**
