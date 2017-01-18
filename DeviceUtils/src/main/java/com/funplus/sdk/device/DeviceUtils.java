@@ -25,7 +25,7 @@ import java.util.Locale;
  */
 public class DeviceUtils {
 
-    public static final String VERSION = "4.0.0";
+    public static final String VERSION = "4.0.1-alpha.0";
 
     private static final String PLAY_AD_ID_SAVED_KEY = "com.funplus.sdk.device.PlayAdId";
 
